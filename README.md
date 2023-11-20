@@ -1,6 +1,6 @@
 # Simple Calculator
 
-This project was published on [netlify] (https://simplecalculator-dulshan.netlify.app/).
+This project was published on [netlify](https://simplecalculator-dulshan.netlify.app/).
 
 ![Alt text](image.png)
 
