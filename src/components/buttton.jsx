@@ -1,9 +1,9 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 import { font, themecolor, themecolor2, white } from "../config";
 
 function KeyButton(props) {
-    const { symbol, width } = props;
+    const { symbol, handleClick } = props;
 
     const style = {
         width: "4rem",
@@ -19,7 +19,7 @@ function KeyButton(props) {
     };
 
     return (
-        <Button sx={style}>
+        <Button sx={style} onClick={handleClick}>
             <Typography
             variant="h4"
             color="initial"
