@@ -6,43 +6,76 @@ import { themecolor, themecolor3, white } from "../config";
 function Calculator() {
     const [value, setValue] = useState("");
 
-    function clickNumber(symbol) {
+    function handleClick(symbol) {
+        try {
         switch (symbol) {
-        case 1:
+            case 1:
             setValue((preValue) => preValue + "1");
             break;
-        case 2:
+            case 2:
             setValue((preValue) => preValue + "2");
             break;
-        case 3:
+            case 3:
             setValue((preValue) => preValue + "3");
             break;
-        case 4:
+            case 4:
             setValue((preValue) => preValue + "4");
             break;
-        case 5:
+            case 5:
             setValue((preValue) => preValue + "5");
             break;
-        case 6:
+            case 6:
             setValue((preValue) => preValue + "6");
             break;
-        case 7:
+            case 7:
             setValue((preValue) => preValue + "7");
             break;
-        case 8:
+            case 8:
             setValue((preValue) => preValue + "8");
             break;
-        case 9:
+            case 9:
             setValue((preValue) => preValue + "9");
             break;
-        case "C":
+            case 0:
+            setValue((preValue) => preValue + "0");
+            break;
+            case "+":
+            setValue((preValue) => preValue + "+");
+            break;
+            case "-":
+            setValue((preValue) => preValue + "-");
+            break;
+            case "*":
+            setValue((preValue) => preValue + "*");
+            break;
+            case "/":
+            setValue((preValue) => preValue + "/");
+            break;
+            case "^":
+            setValue((preValue) => preValue + "**");
+            break;
+            case "%":
+            setValue((preValue) => preValue + "%");
+            break;
+            case ".":
+            setValue((preValue) => preValue + ".");
+            break;
+            case "C":
             setValue("");
             break;
+            case "DE":
+            setValue((preValue) => preValue.slice(0, -1));
+            break;
+            case "=":
+            setValue((preValue) => {
+                let limitedValue = eval(preValue);
+                return limitedValue.toString().slice(0, 12);
+            });
+            break;
         }
-    }
-
-    function clickClacultion(symbol){
-
+        } catch (error) {
+        setValue("Error");
+        }
     }
 
     return (
@@ -52,6 +85,7 @@ function Calculator() {
             justifyContent: "center",
             alignItems: "center",
             height: "100vh",
+            background: themecolor,
         }}
         >
         <Box sx={{ borderRadius: "4px", background: "#C0C0C0", padding: "1rem" }}>
@@ -65,6 +99,7 @@ function Calculator() {
                 display: "flex",
                 justifyContent: "right",
                 alignItems: "center",
+                maxWidth: "243px",
             }}
             >
             <Typography variant="h4" color={white} textAlign={"right"}>
@@ -72,34 +107,34 @@ function Calculator() {
             </Typography>
             </Box>
             <Box sx={{ width: "fit-content", display: "flex" }}>
-            <KeyButton symbol={"C"} handleClick={() => clickNumber("C")} />
-            <KeyButton symbol={"%"} />
-            <KeyButton symbol={"^"} />
-            <KeyButton symbol={"/"} />
+            <KeyButton symbol={"C"} handleClick={() => handleClick("C")} />
+            <KeyButton symbol={"%"} handleClick={() => handleClick("%")} />
+            <KeyButton symbol={"^"} handleClick={() => handleClick("^")} />
+            <KeyButton symbol={"/"} handleClick={() => handleClick("/")} />
             </Box>
             <Box sx={{ width: "fit-content", display: "flex" }}>
-            <KeyButton symbol={"7"} handleClick={() => clickNumber(7)} />
-            <KeyButton symbol={"8"} handleClick={() => clickNumber(8)} />
-            <KeyButton symbol={"9"} handleClick={() => clickNumber(9)} />
-            <KeyButton symbol={"*"} />
+            <KeyButton symbol={"7"} handleClick={() => handleClick(7)} />
+            <KeyButton symbol={"8"} handleClick={() => handleClick(8)} />
+            <KeyButton symbol={"9"} handleClick={() => handleClick(9)} />
+            <KeyButton symbol={"*"} handleClick={() => handleClick("*")} />
             </Box>
             <Box sx={{ width: "fit-content", display: "flex" }}>
-            <KeyButton symbol={"4"} handleClick={() => clickNumber(4)} />
-            <KeyButton symbol={"5"} handleClick={() => clickNumber(5)} />
-            <KeyButton symbol={"6"} handleClick={() => clickNumber(6)} />
-            <KeyButton symbol={"-"} />
+            <KeyButton symbol={"4"} handleClick={() => handleClick(4)} />
+            <KeyButton symbol={"5"} handleClick={() => handleClick(5)} />
+            <KeyButton symbol={"6"} handleClick={() => handleClick(6)} />
+            <KeyButton symbol={"-"} handleClick={() => handleClick("-")} />
             </Box>
             <Box sx={{ width: "fit-content", display: "flex" }}>
-            <KeyButton symbol={"1"} handleClick={() => clickNumber(1)} />
-            <KeyButton symbol={"2"} handleClick={() => clickNumber(2)} />
-            <KeyButton symbol={"3"} handleClick={() => clickNumber(3)} />
-            <KeyButton symbol={"+"} />
+            <KeyButton symbol={"1"} handleClick={() => handleClick(1)} />
+            <KeyButton symbol={"2"} handleClick={() => handleClick(2)} />
+            <KeyButton symbol={"3"} handleClick={() => handleClick(3)} />
+            <KeyButton symbol={"+"} handleClick={() => handleClick("+")} />
             </Box>
             <Box sx={{ width: "fit-content", display: "flex" }}>
-            <KeyButton symbol={"."} />
-            <KeyButton symbol={"0"} handleClick={() => clickNumber(0)} />
-            <KeyButton symbol={"De"} />
-            <KeyButton symbol={"="} />
+            <KeyButton symbol={"."} handleClick={() => handleClick(".")} />
+            <KeyButton symbol={"0"} handleClick={() => handleClick(0)} />
+            <KeyButton symbol={"De"} handleClick={() => handleClick("DE")} />
+            <KeyButton symbol={"="} handleClick={() => handleClick("=")} />
             </Box>
         </Box>
         </Box>
